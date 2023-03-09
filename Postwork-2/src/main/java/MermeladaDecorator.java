@@ -1,8 +1,3 @@
-package com.decorator.topings;
-
-import com.decorator.HeladoDecorator;
-import com.helado.Helado;
-
 public class MermeladaDecorator extends HeladoDecorator {
     private final Helado helado;
     private final int precioTopping = 20;

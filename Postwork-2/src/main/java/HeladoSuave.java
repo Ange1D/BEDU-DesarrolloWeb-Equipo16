@@ -1,5 +1,3 @@
-package com.helado;
-
 public class HeladoSuave implements Helado {
     private final String nombreHelado = "Helado suave";
     private int precioHelado = 30;
