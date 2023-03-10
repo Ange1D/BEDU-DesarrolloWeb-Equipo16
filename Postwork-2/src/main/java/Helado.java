@@ -1,11 +1,6 @@
 public interface Helado {
 
-   String description = "Helado Desconocido";
-
-   public String getDescription() {
-      return description;
-   }
-
+   public String getDescription();   
    public int getPrice();
 
 }
