@@ -1,4 +1,4 @@
-public class MermeladaDecorator extends ExtraDecorator {
+public class MermeladaDecorator implements Helado {
     private final Helado helado;
     private final int precioTopping = 20;
     private final String descripcionTopping = "Con Mermelada";
@@ -8,12 +8,12 @@ public class MermeladaDecorator extends ExtraDecorator {
     }
 
     @Override
-    public String getDescripcion(){
-        return String.format("%s\n%s -- $%d", helado.getDescripcion(), descripcionTopping, precioTopping);
+    public String getDescription(){
+        return String.format("%s\n%s -- $%d", helado.getDescription(), descripcionTopping, precioTopping);
     }
 
     @Override
-    public double costo() {
-        return helado.costo()+precioTopping;
+    public int getPrice() {
+        return helado.getPrice()+precioTopping;
     }
 }
