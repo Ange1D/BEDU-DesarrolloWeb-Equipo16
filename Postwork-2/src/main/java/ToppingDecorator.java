@@ -1,18 +1,19 @@
 public class ToppingDecorator implements Helado {
+
    Helado helado;
+   private String descripcion = "con Topping";
+   private double precio = 20;
 
    public ToppingDecorator( Helado helado ) {
       this.helado = helado;
    }
 
-   @Override
-   public String getDescription() {
-      return helado.getDescription() + ", Con Topping";
+   public String getDescripcion() {
+      return helado.getDescripcion() + descripcion + " $" + precio + "\n";
    }
 
-   @Override
-   public double getPrice() {
-      return helado.getPrice() + 20;
+   public double getPrecio() {
+      return helado.getPrecio() + precio;
    }
 
 }

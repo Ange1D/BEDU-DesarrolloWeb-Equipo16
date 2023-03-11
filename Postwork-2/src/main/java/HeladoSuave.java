@@ -1,13 +1,14 @@
 public class HeladoSuave implements Helado {
-    private final String nombreHelado = "Helado suave";
-    private int precioHelado = 30;
-    @Override
-    public String getDescription() {
-        return String.format("\n%s -- $%d", nombreHelado, precioHelado);
+
+    private String descripcion = "Helado suave";
+    private double precio= 30;
+
+    public String getDescripcion() {
+        return descripcion + " $" + precio + "\n";
     }
 
-    @Override
-    public int getPrice() {
-        return precioHelado;
+    public double getPrecio() {
+        return precio;
     }
+
 }
