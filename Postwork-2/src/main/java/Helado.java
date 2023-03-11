@@ -1,6 +1,6 @@
 public interface Helado {
 
-   public String getDescription();   
-   public int getPrice();
+   public String getDescripcion();
+   public double getPrecio();
 
 }
