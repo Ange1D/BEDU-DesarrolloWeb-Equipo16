@@ -1,11 +1,6 @@
-public abstract class Helado {
+public interface Helado {
 
-   String descripcion = "Helado Desconocido";
-
-   public String getDescripcion() {
-      return descripcion;
-   }
-
-   public abstract double costo();
+   public String getDescription();   
+   public int getPrice();
 
 }
