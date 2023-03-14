@@ -1,6 +1,6 @@
-package org.bedu.java.backend.sesion4;
+package com.bedu.java.backend.postwork;
 
-import org.bedu.java.backend.sesion4.model.Persona;
+import com.bedu.java.backend.postwork.model.Persona;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class Sesion4Application implements CommandLineRunner {
+public class PostWorkApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sesion4Application.class, args);
+		SpringApplication.run(PostWorkApplication.class, args);
 	}
 
 	@Override
