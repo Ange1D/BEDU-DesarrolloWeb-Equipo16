@@ -1,32 +1,43 @@
-package com.bedu.java.backend.postwork;
+package org.bedu.java.backend.sesion5;
 
-import com.bedu.java.backend.postwork.model.Persona;
+import org.bedu.java.backend.sesion5.model.Persona;
+import org.bedu.java.backend.sesion5.util.Telefono;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class PostWorkApplication implements CommandLineRunner {
-
+public class PostworkApplication implements CommandLineRunner {
+	private final Telefono telefono;
+	@Autowired
+	public PostworkApplication(Telefono telefono){
+		this.telefono = telefono;
+	}
 	public static void main(String[] args) {
-		SpringApplication.run(PostWorkApplication.class, args);
+		SpringApplication.run(PostworkApplication.class, args);
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-		Scanner reader = new Scanner(System.in);
+	public void run(String... args) {
+		Scanner leer = new Scanner(System.in);
 
-		System.out.println("Introduce el nombre: ");
-		String nonmbre = reader.nextLine();
+		System.out.print("Introduce tu nombre: ");
+		String nombre = leer.nextLine();
 
-		System.out.println("Introduce el teléfono: ");
-		String telefono = reader.nextLine();
+		System.out.print("Introduce tu número de teléfono: ");
+		String numeroTelefonico = leer.nextLine();
 
-		Persona persona = new Persona(nonmbre, telefono);
+		while (!telefono.getValidacion(numeroTelefonico)){
+			System.out.print("Ha ocurrido un error con tu número de teléfono... introducelo nuevamente: ");
+			numeroTelefonico = leer.nextLine();
+		}
+
+		numeroTelefonico = telefono.getTelefonoValidado(numeroTelefonico);
+		Persona persona = new Persona(nombre, numeroTelefonico);
 		System.out.println(persona);
-	}
 
+	}
 }
