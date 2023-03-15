@@ -1,4 +1,4 @@
-package com.bedu.java.backend.postwork.components;
+package org.bedu.java.backend.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
