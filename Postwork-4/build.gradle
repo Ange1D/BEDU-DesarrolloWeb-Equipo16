@@ -23,7 +23,7 @@ tasks.named('test') {
 }
 
 application {
-    mainClass = "org.bedu.java.backend.postwork.PostworkApplication"
+    mainClass = "org.bedu.java.backend.PostworkApplication"
 }
 
 bootRun {

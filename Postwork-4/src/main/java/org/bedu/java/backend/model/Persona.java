@@ -1,4 +1,4 @@
-package com.bedu.java.backend.postwork.model;
+package org.bedu.java.backend.model;
 
 public class Persona {
 

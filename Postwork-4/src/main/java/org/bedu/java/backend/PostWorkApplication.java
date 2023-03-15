@@ -1,7 +1,7 @@
-package org.bedu.java.backend.sesion5;
+package org.bedu.java.backend;
 
-import org.bedu.java.backend.sesion5.model.Persona;
-import org.bedu.java.backend.sesion5.util.Telefono;
+import org.bedu.java.backend.model.Persona;
+import org.bedu.java.backend.util.Telefono;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
