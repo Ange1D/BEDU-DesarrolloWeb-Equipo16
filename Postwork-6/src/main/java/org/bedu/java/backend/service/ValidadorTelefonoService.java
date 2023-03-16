@@ -24,4 +24,8 @@ public class ValidadorTelefonoService {
         Matcher validarNumeros = pattern.matcher(telefono);
         return validarNumeros.matches();
     }
+
+    public String limpiarTelefono(String telefono){
+        return telefono.replaceAll("[0-9]", "");
+    }
 }
