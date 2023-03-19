@@ -1,7 +1,8 @@
 package org.bedu.java.backend;
 
 import org.bedu.java.backend.model.Persona;
-import org.bedu.java.backend.util.Telefono;
+import org.bedu.java.backend.service.FormatoTelefonoService;
+import org.bedu.java.backend.service.ValidadorTelefonoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,10 +12,13 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class PostworkApplication implements CommandLineRunner {
-	private final Telefono telefono;
+	private final ValidadorTelefonoService validadorTelefonoService;
+	private final FormatoTelefonoService formatoTelefonoService;
+
 	@Autowired
-	public PostworkApplication(Telefono telefono){
-		this.telefono = telefono;
+	public PostworkApplication(ValidadorTelefonoService validadorTelefonoService, FormatoTelefonoService formatoTelefonoService){
+		this.validadorTelefonoService = validadorTelefonoService;
+		this.formatoTelefonoService = formatoTelefonoService;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(PostworkApplication.class, args);
@@ -30,14 +34,14 @@ public class PostworkApplication implements CommandLineRunner {
 		System.out.print("Introduce tu número de teléfono: ");
 		String numeroTelefonico = leer.nextLine();
 
-		while (!telefono.getValidacion(numeroTelefonico)){
+
+		while (!validadorTelefonoService.validarTelefono(numeroTelefonico)){
 			System.out.print("Ha ocurrido un error con tu número de teléfono... introducelo nuevamente: ");
 			numeroTelefonico = leer.nextLine();
 		}
 
-		numeroTelefonico = telefono.getTelefonoValidado(numeroTelefonico);
+		numeroTelefonico = formatoTelefonoService.formatoNumero(numeroTelefonico);
 		Persona persona = new Persona(nombre, numeroTelefonico);
 		System.out.println(persona);
-
 	}
 }
