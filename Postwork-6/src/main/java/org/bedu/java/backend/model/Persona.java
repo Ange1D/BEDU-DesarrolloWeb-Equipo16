@@ -1,6 +1,6 @@
 package org.bedu.java.backend.model;
 
-public class Persona {
+public class Persona implements Comparable<Persona> {
 
     private String nombre;
     private String telefono;
@@ -31,4 +31,10 @@ public class Persona {
     public String toString() {
         return "Bienvenido "+this.nombre+"\n Tu telefono es "+ this.telefono;
     }
+
+    @Override
+    public int compareTo( Persona persona ) {
+        return this.nombre.compareTo( persona.nombre );
+    }
+
 }
