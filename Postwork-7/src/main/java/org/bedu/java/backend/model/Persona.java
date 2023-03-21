@@ -1,18 +1,14 @@
 package org.bedu.java.backend.model;
 
-import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class Persona implements Comparable<Persona> {
+
+    @NotBlank(message = "El nombre de usuario es un campo obligatorio.")
     private String nombre;
+    @Pattern(regexp = "^(\\d{2,4}[- .]?){2}\\d{4}$", message = "El teléfono debe tener un formato de ##-####-####")
     private String telefono;
-
-    public Persona() {
-    }
-
-    public Persona(String nombre, String telefono) {
-        this.nombre = nombre;
-        this.telefono = telefono;
-    }
 
     public String getNombre() {
         return nombre;
@@ -32,27 +28,12 @@ public class Persona implements Comparable<Persona> {
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return "Bienvenido "+this.nombre+"\n Tu telefono es "+ this.telefono;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Persona persona = (Persona) o;
-        return nombre.equals(persona.nombre);
+    public int compareTo( Persona persona ) {
+        return this.nombre.compareTo( persona.nombre );
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre);
-    }
-
-    @Override
-    public int compareTo(Persona o) {
-        return this.nombre.compareTo(o.nombre);
-    }
 }
