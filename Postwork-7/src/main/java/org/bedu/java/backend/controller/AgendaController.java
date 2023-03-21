@@ -3,36 +3,67 @@ package org.bedu.java.backend.controller;
 import org.bedu.java.backend.model.Persona;
 import org.bedu.java.backend.service.AgendaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
+import javax.validation.Valid;
 
-
-@RestController
-@RequestMapping("/api/v1/agenda")
+@Controller
 public class AgendaController {
 
-    private final AgendaService agendaService;
+   AgendaService agendaService;
+   @Autowired
+   AgendaController(
+      AgendaService agendaService
+   ) {
+      this.agendaService = agendaService;
+   }
 
-    @Autowired
-    public AgendaController(AgendaService agendaService) {
-        this.agendaService = agendaService;
-    }
+   @GetMapping("/")
+   public ModelAndView raiz(
+   ) {
+      ModelAndView mav = new ModelAndView("redirect:/personas/all" );
 
-    @PostMapping
-    public ResponseEntity<Persona> guardaPersona(@RequestBody Persona persona) {
-        Persona resultado = agendaService.guardaPersona(persona);
+      return mav;
+   }
+   @PostMapping(value = "/personas/save")
+   public ModelAndView personasSave(
+      @Valid Persona persona,
+      Errors errors
+   ) {
 
-        if (resultado == null) {
-            return ResponseEntity.badRequest().build();
-        }
+      ModelAndView mav;
 
-        return ResponseEntity.ok(resultado);
-    }
+      if( errors.hasErrors() ){
+         mav = new ModelAndView("personas-add" );
+      }
+      else {
+         agendaService.guardaPersona(persona);
+         mav = new ModelAndView("redirect:/personas/all" );
+      }
 
-    @GetMapping
-    public ResponseEntity<Set<Persona>> getPersonas(){
-        return ResponseEntity.ok(agendaService.getPersonas());
-    }
+      return mav;
+   }
+
+   @GetMapping("/personas/add")
+   public ModelAndView personasAdd() {
+
+      ModelAndView mav = new ModelAndView("personas-add");
+      Persona persona = new Persona();
+      mav.addObject("persona", persona );
+
+      return mav;
+   }
+
+   @GetMapping("/personas/all")
+   public ModelAndView personasAll() {
+
+      ModelAndView mav = new ModelAndView("index");
+      mav.addObject("personas", agendaService.getPersonas() );
+
+      return mav;
+   }
+
 }

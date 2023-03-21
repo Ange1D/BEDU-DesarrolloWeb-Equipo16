@@ -19,7 +19,7 @@ public class FormatoTelefonoService {
     // Se agrega formato (##)-####-#### al número de teléfono
     public String formatoNumero(String telefono) {
         String numero = obtenerNumeros(telefono);
-        return String.format("(%s)-%s-%s",
+        return String.format("%s-%s-%s",
                 numero.substring(0,2),
                 numero.substring(2,6),
                 numero.substring(6, 10));
